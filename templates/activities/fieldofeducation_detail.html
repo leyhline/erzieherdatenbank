@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Erziehungsbereich: {{ object.name }}</title>
+</head>
+<body>
+<h1>Erziehungsbereich: {{ object.name }}</h1>
+<ul>
+{% for object in object.activity_set.all %}
+   <li><a href="{% url 'activities:activity-detail' object.id %}">{{ object.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>

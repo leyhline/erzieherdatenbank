@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Angebotsübersicht</title>
+</head>
+<body>
+<h1>Angebotsübersicht</h1>
+<ul>
+{% for object in object_list %}
+   <li><a href="{% url 'activities:activity-detail' object.id %}">{{ object.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
