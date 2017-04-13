@@ -11,7 +11,7 @@ def file_upload_path(instance, filename):
     file_id = 1 if last_file is None else last_file.id + 1
     ext = os.path.splitext(filename)[1]
     classname = instance.__class__.__name__.lower()
-    return "activity_{}/{}_{}{}".format(instance.activity_id, classname, file_id, ext)
+    return "activity{}/{}{}{}".format(instance.activity_id, classname, file_id, ext)
 
 
 class FieldOfEducation(models.Model):
@@ -161,7 +161,7 @@ class Image(models.Model):
                                  verbose_name="Angebot")
 
     def __str__(self):
-        return self.upload.name
+        return self.upload.url
 
     class Meta:
         verbose_name = "Bild"
@@ -177,7 +177,7 @@ class File(models.Model):
                                  verbose_name="Angebot")
 
     def __str__(self):
-        return self.upload.name
+        return self.upload.url
 
     class Meta:
         verbose_name = "Datei"

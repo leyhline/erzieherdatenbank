@@ -7,7 +7,7 @@
 <title>{{ object.title }}</title>
 </head>
 <body>
-<img src="{{ object.image_set.first }}" />
+<img src="{{ object.image_set.first }}" alt="{{ object.image_set.first.description }}" />
 <h1>{{ object.title }}</h1>
 <p><b>Alter:</b> {{ object.min_age }}{% if object.max_age == 99 %}+{% else %} bis {{ object.max_age}}{% endif %}</p>
 <p><b>Bildungsbereiche:</b> {{ object.field_of_education.all|join:", " }}</p>
@@ -18,5 +18,8 @@
 <p><b>Aktivität:</b> {{ object.setting|yesno:"Draußen,Drinnen,Drinnen und Draußen" }}</p>
 <p>{{ object.description|hashtagger|linebreaks }}</p>
 <p><b>Quelle:</b> {{ object.source|urlize }}</p>
+<p><b>Dateianhänge:</b>
+<ul>{{ object.file_set.all|unordered_list }}</ul>
+</p>
 </body>
 </html>
