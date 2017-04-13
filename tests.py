@@ -2,6 +2,7 @@ from django.test import TestCase
 
 from .templatetags.activity_extras import hashtagger
 from .models import Activity, Tag
+from django.core.exceptions import ValidationError
 
 
 class HashtagFilterTests(TestCase):
@@ -68,3 +69,14 @@ class ActivitySaveTests(TestCase):
         a2.description = "Was #geht ab, #Digger?"
         a2.save()
         self.assertEqual(len(Tag.objects.get(name="geht").activity_set.all()), 2)
+
+
+class ModelValidationTest(TestCase):
+
+    def test_tag_regex_validator(self):
+        Tag.tag_validator("atag")
+        with self.assertRaises(ValidationError):
+            Tag.tag_validator(" atag")
+            Tag.tag_validator("atag%")
+            Tag.tag_validator(" atag ")
+            Tag.tag_validator("atag btag")

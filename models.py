@@ -64,7 +64,7 @@ class Season(models.Model):
 
 class Tag(models.Model):
     # Match if there is a non-letter at the beginning or end of the word.
-    tag_validator = RegexValidator(r"""\W+|\w+\W+""")
+    tag_validator = RegexValidator(r"""\W+|\w+\W+""", inverse_match=True)
     name = models.CharField(max_length=50, unique=True, editable=False,
                             validators=[tag_validator],
                             help_text="Maximal 50 Zeichen.")
