@@ -88,7 +88,7 @@ class Activity(models.Model):
                 default=0, validators=[max_validator],
                 help_text="Alter muss zwischen 0 und 99 liegen.",
                 verbose_name="Mindestalter")
-    max_age = models.PositiveSmallIntegerField(editable=False,
+    max_age = models.PositiveSmallIntegerField(
                 default=maximum_default, validators=[max_validator],
                 help_text="Alter muss zwischen 0 und 99 liegen.",
                 verbose_name="Maximalalter")
@@ -113,8 +113,10 @@ class Activity(models.Model):
                                      help_text=("Zu welchen Jahreszeiten passt das Angebot? "
                                                 "Ist die Jahreszeit egal, bitte alle auswählen."),
                                      verbose_name="Jahreszeiten")
-    tags = models.ManyToManyField(Tag, blank=True, editable=False,
-                                  help_text="Für beliebige Stichworte mit je Maximallänge 50.")
+    tags = models.ManyToManyField(Tag, blank=True,
+                                  help_text=("Für beliebige Stichworte mit je Maximallänge 50. "
+                                             "Tags werden direkt in der Beschreibung mittels "
+                                             "vorangestelltem # zugefügt."))
     materials = models.ManyToManyField(Material, through="MaterialAmount", blank=True,
                                        help_text=("Welche Materialien sind notwendig? "
                                                   "Mengenangaben sind optional."),
