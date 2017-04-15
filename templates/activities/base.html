@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex, nofollow">
+	<title>Erzieherdatenbank – {% block title %}Startseite{% endblock %}</title>
+</head>
+<body>
+	<div id="headerbar">
+	   {% block headerbar %}
+	   <a href="{% url 'activities:activity-list' %}">Angebote</a> – 
+	   <a href="{% url 'activities:foe-list' %}">Bildungsbereiche</a> – 
+	   <a href="{% url 'activities:season-list' %}">Jahreszeiten</a> – 
+	   <a href="{% url 'activities:material-list' %}">Materialien</a> – 
+	   <a href="{% url 'activities:tag-list' %}">Tags</a>
+	   {% endblock %}
+	</div>
+	<div id="content">
+	    <h1>{% block headline %}Startseite{% endblock %}</h1>
+	    {% block content %}{% endblock %}
+	</div>
+</body>
+</html>
