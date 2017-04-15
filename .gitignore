@@ -96,4 +96,5 @@ ENV/
 # Custom
 .project
 .pydevproject
-migrations
+migrations/*
+!migrations/0001_initial_data.py

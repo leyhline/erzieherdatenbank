@@ -1,8 +1,9 @@
 from django.test import TestCase
+from django.core.exceptions import ValidationError
 
 from .templatetags.activity_extras import hashtagger
-from .models import Activity, Tag
-from django.core.exceptions import ValidationError
+from .models import Activity, Tag, Season
+#from .migrations.0001_initial_data import Migration
 
 
 class HashtagFilterTests(TestCase):
@@ -69,6 +70,17 @@ class ActivitySaveTests(TestCase):
         a2.description = "Was #geht ab, #Digger?"
         a2.save()
         self.assertEqual(len(Tag.objects.get(name="geht").activity_set.all()), 2)
+
+
+class InitialModelDataTest(TestCase):
+
+    def test_initial_season_data(self):
+        seasons = Season.objects.order_by("name")
+        self.assertEqual(len(seasons), 4)
+        self.assertEqual(seasons[0].name, "F")
+        self.assertEqual(seasons[1].name, "H")
+        self.assertEqual(seasons[2].name, "S")
+        self.assertEqual(seasons[3].name, "W")
 
 
 class ModelValidationTest(TestCase):
