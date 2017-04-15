@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Erziehungsbereich: {{ object.name }}</title>
-</head>
-<body>
-<h1>Erziehungsbereich: {{ object.name }}</h1>
+{% extends "activities/base.html" %}
+
+{% block title %}Bildungsbereich – {{ object.name }}{% endblock %}
+{% block headline %}Bildungsbereich: {{ object.name }}{% endblock %}
+
+{% block content %}
 <ul>
 {% for object in object.activity_set.all %}
    <li><a href="{% url 'activities:activity-detail' object.id %}">{{ object.title }}</a></li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

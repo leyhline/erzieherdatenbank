@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Jahreszeiten</title>
-</head>
-<body>
-<h1>Jahreszeiten</h1>
+{% extends "activities/base.html" %}
+
+{% block title %}Jahreszeiten{% endblock %}
+{% block headline %}Jahreszeiten{% endblock %}
+
+{% block content %}
 <ul>
 {% for object in object_list %}
    <li><a href="{% url 'activities:season-detail' object.name %}">{{ object.full_name }}</a></li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

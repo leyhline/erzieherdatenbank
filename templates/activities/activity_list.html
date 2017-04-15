@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Angebotsübersicht</title>
-</head>
-<body>
-<h1>Angebotsübersicht</h1>
+{% extends "activities/base.html" %}
+
+{% block title %}Angebotsübersicht{% endblock %}
+{% block headline %}Angebotsübersicht{% endblock %}
+
+{% block content %}
 <ul>
 {% for object in object_list %}
    <li><a href="{% url 'activities:activity-detail' object.id %}">{{ object.title }}</a></li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}

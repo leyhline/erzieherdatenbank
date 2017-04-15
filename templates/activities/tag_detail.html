@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Tag: {{ object.name|capfirst }}</title>
-</head>
-<body>
-<h1>Tag: {{ object.name|capfirst }}</h1>
+{% extends "activities/base.html" %}
+
+{% block title %}Tag – {{ object.name|capfirst }}{% endblock %}
+{% block headline %}Tag: {{ object.name|capfirst }}{% endblock %}
+
+{% block content %}
 <ul>
 {% for object in object.activity_set.all %}
    <li><a href="{% url 'activities:activity-detail' object.id %}">{{ object.title }}</a></li>
 {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}
