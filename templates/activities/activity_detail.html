@@ -5,16 +5,15 @@
 {% block headline %}{{ object.title }}{% endblock %}
 
 {% block content %}
-<img src="{{ object.image_set.first }}" alt="{{ object.image_set.first.description }}" />
+<img src="{{ object.image_set.first }}" alt="{{ object.image_set.first.description }}" class="pure-img" />
 <p><b>Alter:</b> {{ object.min_age }}{% if object.max_age == 99 %}+{% else %} bis {{ object.max_age}}{% endif %}</p>
 <p><b>Bildungsbereiche:</b> {{ object.field_of_education.all|join:", " }}</p>
 <p><b>Materialien:</b>
 <ul>{{ object.materialamount_set.all|unordered_list }}</ul>
 </p>
 <p><b>Jahreszeiten:</b> {{ object.seasons.all|join:", " }}</p>
-<p><b>Aktivität:</b> {{ object.setting|yesno:"Draußen,Drinnen,Drinnen und Draußen" }}</p>
+<p><b>Aktivität:</b> {{ object.setting|yesno:"Drinnen,Draußen,Drinnen und Draußen" }}</p>
 <p>{{ object.description|hashtagger|linebreaks }}</p>
-<p><b>Quelle:</b> {{ object.source|urlize }}</p>
 <p><b>Dateianhänge:</b>
 <ul>
 {% for file in object.file_set.all %}<li><a href="{{ file }}">{{ file.upload.name }}</a></li>{% endfor %}

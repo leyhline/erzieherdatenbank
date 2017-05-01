@@ -1,12 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 	<meta charset="UTF-8">
 	<meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" type="text/css" href="{% static 'activities/pure.css' %}">
 	<title>Erzieherdatenbank – {% block title %}Startseite{% endblock %}</title>
 </head>
 <body>
-	<div id="headerbar">
+	<div id="headerbar" class="pure-menu pure-menu-horizontal">
 	   {% block headerbar %}
 	   <a href="{% url 'activities:activity-list' %}">Angebote</a> – 
 	   <a href="{% url 'activities:foe-list' %}">Bildungsbereiche</a> – 
