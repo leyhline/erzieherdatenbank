@@ -199,8 +199,8 @@ class File(models.Model):
         return self.upload.url
 
     class Meta:
-        verbose_name = "Datei"
-        verbose_name_plural = "Dateien"
+        verbose_name = "Dateianhang"
+        verbose_name_plural = "Dateianhänge"
 
 
 class MaterialAmount(models.Model):
@@ -214,6 +214,7 @@ class MaterialAmount(models.Model):
         ("EL", "EL"),
         ("TL", "TL"),
         ("St", "Stück"))
+    UNIT_DICT = dict(UNIT_CHOICES)
 
     material = models.ForeignKey(Material, on_delete=models.PROTECT,
                                  verbose_name="Material")
@@ -225,12 +226,16 @@ class MaterialAmount(models.Model):
     unit = models.CharField(max_length=2, choices=UNIT_CHOICES, blank=True, default="",
                             help_text="Optional. Falls eine Maßeinheit fehlt bitte beim Administrator melden.",
                             verbose_name="Maßeinheit")
+    per_child = models.BooleanField(default=False,
+                                    help_text="Gesamtmenge oder Menge je Kind?",
+                                    verbose_name="je Kind")
 
     def __str__(self):
         if self.amount == 0:
             return str(self.material)
         else:
-            return "{} {} {}".format(self.amount, self.unit, self.material)
+            return "{} {} {}{}".format(self.amount, self.UNIT_DICT[self.unit], self.material,
+                                        " je Kind" if self.per_child else "")
 
     class Meta:
         verbose_name = "Material und Mengen"
