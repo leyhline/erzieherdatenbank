@@ -62,6 +62,19 @@ class Season(models.Model):
         verbose_name_plural = "Jahreszeiten"
 
 
+class Festival(models.Model):
+    name = models.CharField(max_length=250, unique=True,
+                            help_text="Maximal 50 Zeichen.",
+                            verbose_name="Fest")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Fest"
+        verbose_name_plural = "Feste"
+
+
 class Tag(models.Model):
     # Match if there is a non-letter at the beginning or end of the word.
     tag_validator = RegexValidator(r"""\W+|\w+\W+""", inverse_match=True)
@@ -124,6 +137,10 @@ class Activity(models.Model):
     field_of_education = models.ManyToManyField(FieldOfEducation,
                             help_text="Bildungs- und Erziehungsbereiche, die betroffen sind.",
                             verbose_name="Bildungsbereiche")
+    festivals = models.ManyToManyField(Festival, blank=True,
+                                       help_text="Hier die Feste angeben, falls das Angebot diese betrifft.",
+                                       verbose_name="Feste")
+
 
     def update_tags_from_description(self):
         """
