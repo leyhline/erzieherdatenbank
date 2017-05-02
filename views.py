@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, View
 
-from .models import Activity, FieldOfEducation, Material, Season, Tag
+from .models import Activity, FieldOfEducation, Material, Season, Tag, Festival
 
 
 class ActivityList(ListView):
@@ -41,3 +41,9 @@ class TagList(ListView):
 
 class TagDetail(DetailView):
     model = Tag
+
+class FestivalList(ListView):
+    model = Festival
+
+class FestivalDetail(DetailView):
+    model = Festival

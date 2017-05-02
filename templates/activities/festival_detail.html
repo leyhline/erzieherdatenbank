@@ -1,0 +1,12 @@
+{% extends "activities/base.html" %}
+
+{% block title %}Fest – {{ object.name }}{% endblock %}
+{% block headline %}Fest: {{ object.name }}{% endblock %}
+
+{% block content %}
+<ul>
+{% for object in object.activity_set.all %}
+   <li><a href="{% url 'activities:activity-detail' object.id %}">{{ object.title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

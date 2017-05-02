@@ -12,6 +12,7 @@
 <ul>{{ object.materialamount_set.all|unordered_list }}</ul>
 </p>
 <p><b>Jahreszeiten:</b> {{ object.seasons.all|join:", " }}</p>
+<p><b>Feste:</b> {{ object.festivals.all|join:", " }}</p>
 <p><b>Aktivität:</b> {{ object.setting|yesno:"Drinnen,Draußen,Drinnen und Draußen" }}</p>
 <p>{{ object.description|hashtagger|linebreaks }}</p>
 <p><b>Dateianhänge:</b>

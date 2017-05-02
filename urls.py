@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^jahreszeit/(?P<pk>[FSHW])/$', views.SeasonDetail.as_view(), name="season-detail"),
     url(r'^tag/$', views.TagList.as_view(), name="tag-list"),
     url(r'^tag/(?P<pk>[0-9]+)/$', views.TagDetail.as_view(), name="tag-detail"),
+    url(r'^fest/$', views.FestivalList.as_view(), name="festival-list"),
+    url(r'^fest/(?P<pk>[0-9]+)/$', views.FestivalDetail.as_view(), name="festival-detail"),
 ]

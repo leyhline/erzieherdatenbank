@@ -13,9 +13,11 @@
 	   {% block headerbar %}
 	   <a href="{% url 'activities:activity-list' %}">Angebote</a> – 
 	   <a href="{% url 'activities:foe-list' %}">Bildungsbereiche</a> – 
-	   <a href="{% url 'activities:season-list' %}">Jahreszeiten</a> – 
+	   <a href="{% url 'activities:season-list' %}">Jahreszeiten</a> –
+       <a href="{% url 'activities:festival-list' %}">Feste</a> –
 	   <a href="{% url 'activities:material-list' %}">Materialien</a> – 
-	   <a href="{% url 'activities:tag-list' %}">Tags</a>
+	   <a href="{% url 'activities:tag-list' %}">Tags</a> –
+       <a href="{% url 'admin:index' %}">Redaktion</a>
 	   {% endblock %}
 	</div>
 	<div id="content">
