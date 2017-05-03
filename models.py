@@ -141,16 +141,15 @@ class Activity(models.Model):
                                        help_text="Hier die Feste angeben, falls das Angebot diese betrifft.",
                                        verbose_name="Feste")
 
-
     def update_tags_from_description(self):
         """
         Search description for hashtags, remove obsolete tags and add new tags
         if necessary.
         """
-        new_tags = tuple(match.group(2).lower() for match in RE_HASHTAG.finditer(self.description))
+        new_tags = set(match.group(2).lower() for match in RE_HASHTAG.finditer(self.description))
         self.tags.exclude(name__in=new_tags).delete()  # Delete obsolete tags.
         existing_tags = Tag.objects.filter(name__in=new_tags)
-        existing_tag_names = tuple(tag.name for tag in existing_tags)
+        existing_tag_names = set(tag.name for tag in existing_tags)
         new_tags = filter(lambda x: x not in existing_tag_names, new_tags)
         new_tags = tuple(Tag.objects.create(name=tag) for tag in new_tags)
         self.tags.add(*new_tags, *existing_tags)

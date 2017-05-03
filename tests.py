@@ -36,9 +36,10 @@ class ActivitySaveTests(TestCase):
     def test_add_tags_from_description(self):
         a = Activity(title="Test", description="Was #geht ab, #Digger?")
         a.save()
-        tags = a.tags.all()
-        self.assertEqual(tags[0].name, "geht")
-        self.assertEqual(tags[1].name, "digger")
+        tags = tuple(tag.name for tag in a.tags.all())
+        self.assertEqual(len(tags), 2)
+        self.assertIn("geht", tags)
+        self.assertIn("digger", tags)
 
     def test_delete_tags(self):
         a = Activity(title="Test", description="Was #geht ab, #Digger?")
@@ -53,9 +54,9 @@ class ActivitySaveTests(TestCase):
         self.assertEqual(Tag.objects.first().name, "digger")
         a = Activity(title="Test", description="Was #geht ab, #Digger?")
         a.save()
-        tags = a.tags.all()
-        self.assertEqual(tags[1].name, "geht")
-        self.assertEqual(tags[0].name, "digger")
+        tags = tuple(tag.name for tag in a.tags.all())
+        self.assertIn("geht", tags)
+        self.assertIn("digger", tags)
 
     def test_so_you_dont_delete_tags_with_multiple_activities(self):
         a1 = Activity(title="Test1", description="Was #geht ab, #Digger?")
